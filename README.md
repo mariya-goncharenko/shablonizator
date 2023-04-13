@@ -1,4 +1,5 @@
-# Школа разработки интерфейсов. Шаблонизатор. 
+# Школа разработки интерфейсов. Шаблонизатор.
+## Выполнила Гончаренко Мария.
 
 Есть HTML, где у каждого элемента может быть атрибут x-make со следующими значениями:
 
@@ -19,7 +20,7 @@ solution(document.querySelector('entry'))
 
 До:
 
-<entry>
+{<entry>
     <div>
         <div x-make="remove:1">Блок 1</div>
         <div x-make="copy:3">Блок 2</div>
@@ -34,7 +35,7 @@ solution(document.querySelector('entry'))
         <div>Блок 2</div>
         <div>Блок 2</div>
     </div>
-</entry>
+</entry>}
 Пояснение:
 
 "Блок 2" был скопирован 3 раза — теперь элементов "Блок 2" — четыре.
@@ -47,7 +48,7 @@ solution(document.querySelector('entry'))
 
 До:
 
-<entry>
+{<entry>
     <div x-make="removeChildren:2">
         <div x-make="copy:100">Блок 1</div>
         <div>Блок 2</div>
@@ -55,16 +56,16 @@ solution(document.querySelector('entry'))
         <div>Блок 4</div>
         <div>Блок 5</div>
     </div>
-</entry>
+</entry>}
 После:
 
-<entry>
+{<entry>
     <div>
         <div>Блок 4</div>
         <div>Блок 3</div>
         <div>Блок 5</div>
     </div>
-</entry>
+</entry>}
 Пояснение:
 
 Количество блоков "Блок 1" не увеличилось, т.к. он был удалён родителем с помощью removeChildren.
@@ -77,7 +78,7 @@ solution(document.querySelector('entry'))
 
 До:
 
-<entry>
+{<entry>
     <section>
         <div x-make="switch:2">
             <div x-make="remove:5">Блок 1</div>
@@ -89,10 +90,10 @@ solution(document.querySelector('entry'))
         </div>
         <p>Блок 5</p>
     </section>
-</entry>
+</entry>}
 После:
 
-<entry>
+{<entry>
     <section>
         <div>
             <div>Блок 3</div>
@@ -105,7 +106,7 @@ solution(document.querySelector('entry'))
         </div>
         <p>Блок 5</p>
     </section>
-</entry>
+</entry>}
 Пояснение:
 
 Из-за приоритета операций сначала был скопирован второй элемент — в section теперь четыре элемента.
@@ -118,18 +119,18 @@ solution(document.querySelector('entry'))
 
 До:
 
-<entry>
+{<entry>
     <div x-make="switch:2">1</div>
     <div x-make="switch:3">2</div>
     <div x-make="switch:5">3</div>
-</entry>
+</entry>}
 После:
 
-<entry>
+{<entry>
     <div>1</div>
     <div>2</div>
     <div>3</div>
-</entry>
+</entry>}
 Пояснение:
 
 "Блок 1" меняется местами с "Блок 3". Далее в контейнере первым элементом с x-make будет идти "Блок 3" — он поменяется местами с "Блок 1". Оставшийся "Блок 2" меняется местами сам с собой, то есть остаётся на месте.
