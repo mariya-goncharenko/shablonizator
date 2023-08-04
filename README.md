@@ -16,18 +16,23 @@ switch:n — поменять текущий элемент местами с э
 
 Пример 1:
 
+```
 solution(document.querySelector('entry'))
+```
 
 До:
 
+```
 {<entry>
     <div>
         <div x-make="remove:1">Блок 1</div>
         <div x-make="copy:3">Блок 2</div>
     </div>
 </entry>
-После:
+```
 
+После:
+```
 <entry>
     <div>
         <div>Блок 1</div>
@@ -36,6 +41,9 @@ solution(document.querySelector('entry'))
         <div>Блок 2</div>
     </div>
 </entry>}
+```
+
+
 Пояснение:
 
 "Блок 2" был скопирован 3 раза — теперь элементов "Блок 2" — четыре.
@@ -44,10 +52,12 @@ solution(document.querySelector('entry'))
 
 Пример 2:
 
+```
 solution(document.querySelector('entry'))
+```
 
 До:
-
+```
 {<entry>
     <div x-make="removeChildren:2">
         <div x-make="copy:100">Блок 1</div>
@@ -57,8 +67,10 @@ solution(document.querySelector('entry'))
         <div>Блок 5</div>
     </div>
 </entry>}
-После:
+```
 
+После:
+```
 {<entry>
     <div>
         <div>Блок 4</div>
@@ -66,6 +78,7 @@ solution(document.querySelector('entry'))
         <div>Блок 5</div>
     </div>
 </entry>}
+```
 Пояснение:
 
 Количество блоков "Блок 1" не увеличилось, т.к. он был удалён родителем с помощью removeChildren.
@@ -73,11 +86,12 @@ solution(document.querySelector('entry'))
 "Блок 3" поменялся с "Блок 4", т.к. седьмой элемент, считая от "Блок 3", — "Блок 4".
 
 Пример 3:
-
+```
 solution(document.querySelector('entry'))
+```
 
 До:
-
+```
 {<entry>
     <section>
         <div x-make="switch:2">
@@ -91,8 +105,9 @@ solution(document.querySelector('entry'))
         <p>Блок 5</p>
     </section>
 </entry>}
+```
 После:
-
+```
 {<entry>
     <section>
         <div>
@@ -107,6 +122,7 @@ solution(document.querySelector('entry'))
         <p>Блок 5</p>
     </section>
 </entry>}
+```
 Пояснение:
 
 Из-за приоритета операций сначала был скопирован второй элемент — в section теперь четыре элемента.
@@ -114,23 +130,25 @@ solution(document.querySelector('entry'))
 Из-за remove:5 в "Блок 1" был удалён "Блок 2"
 Из-за remove:5 в "Блок 3" был удалён "Блок 4" (в двух элементах внутри section, т.к. они были скопированы)
 Пример 4:
-
+```
 solution(document.querySelector('entry'))
-
+```
 До:
-
+```
 {<entry>
     <div x-make="switch:2">1</div>
     <div x-make="switch:3">2</div>
     <div x-make="switch:5">3</div>
 </entry>}
+```
 После:
-
+```
 {<entry>
     <div>1</div>
     <div>2</div>
     <div>3</div>
 </entry>}
+```
 Пояснение:
 
 "Блок 1" меняется местами с "Блок 3". Далее в контейнере первым элементом с x-make будет идти "Блок 3" — он поменяется местами с "Блок 1". Оставшийся "Блок 2" меняется местами сам с собой, то есть остаётся на месте.
@@ -139,8 +157,9 @@ solution(document.querySelector('entry'))
 Решение должно представлять из себя функцию с названием solution, принимающую на вход DOM-элемент - точку входа.
 
 Исходный код нужно оформить следующим образом:
-
+```
 function solution(entryPoint) {  
     // ваше решение
 }
+```
 Решение будет тестироваться в последней версии браузера Google Chrome.
